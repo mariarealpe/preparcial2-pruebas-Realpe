@@ -1,6 +1,7 @@
 package parqueadero.unitarias;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,5 +29,13 @@ class DescuentosTest {
     @DisplayName("Un cliente sin tipo especial no tiene descuento")
     void clienteNingunoNoTieneDescuento() {
         assertEquals(3000, descuentos.aplicarDescuento(3000, "ninguno"));
+    }
+
+    @Test
+    @DisplayName("Rechaza un tipo de cliente desconocido")
+    void rechazaTipoDeClienteDesconocido() {
+        IllegalArgumentException error = assertThrows(IllegalArgumentException.class,
+                () -> descuentos.aplicarDescuento(3000, "vip"));
+        assertEquals("Tipo de cliente no válido", error.getMessage());
     }
 }
