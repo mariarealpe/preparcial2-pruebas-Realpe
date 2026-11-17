@@ -32,6 +32,18 @@ class DescuentosTest {
     }
 
     @Test
+    @DisplayName("El resultado se redondea hacia abajo al peso entero")
+    void redondeaHaciaAbajo() {
+        assertEquals(1799, descuentos.aplicarDescuento(1999, "frecuente"));
+    }
+
+    @Test
+    @DisplayName("Un valor de cero sigue siendo cero")
+    void valorCeroDevuelveCero() {
+        assertEquals(0, descuentos.aplicarDescuento(0, "convenio"));
+    }
+
+    @Test
     @DisplayName("Rechaza un tipo de cliente desconocido")
     void rechazaTipoDeClienteDesconocido() {
         IllegalArgumentException error = assertThrows(IllegalArgumentException.class,
