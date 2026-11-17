@@ -23,4 +23,10 @@ class DescuentosTest {
     void clienteConvenioTieneVeintePorCiento() {
         assertEquals(20000, descuentos.aplicarDescuento(25000, "convenio"));
     }
+
+    @Test
+    @DisplayName("Un cliente sin tipo especial no tiene descuento")
+    void clienteNingunoNoTieneDescuento() {
+        assertEquals(3000, descuentos.aplicarDescuento(3000, "ninguno"));
+    }
 }
